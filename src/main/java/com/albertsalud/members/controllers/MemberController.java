@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.albertsalud.members.controllers.dto.MemberLoginFormDTO;
 import com.albertsalud.members.controllers.dto.MembersFormDTO;
 import com.albertsalud.members.model.entities.Member;
 import com.albertsalud.members.model.services.MemberServices;
@@ -60,6 +61,33 @@ public class MemberController {
 			
 		}
 		
+	}
+	
+	@GetMapping(value= {"",  "/"})
+	public String goToLoginForm(Model model) {
+		return goToMemberLoginForm(model, new MemberLoginFormDTO());
+	}
+
+	private String goToMemberLoginForm(Model model, MemberLoginFormDTO memberLoginFormDTO) {
+		model.addAttribute("memberLoginFormDTO", memberLoginFormDTO);
+		return "memberLoginForm";
+	}
+	
+	@PostMapping("/login")
+	public String login(@Valid @ModelAttribute MemberLoginFormDTO dto,
+			BindingResult result,
+			Model model) {
+		
+		if(result.hasErrors()) return goToMemberLoginForm(model, dto);
+		
+		Member member = memberServices.findByEmailAndPassword(dto.getEmail(), dto.getPassword());
+		if(member == null) {
+			model.addAttribute("errorMessage", "User not found");
+			return goToMemberLoginForm(model, dto);
+		}
+		
+		// TODO set user to security context
+		return "redirect:/private/members/home";
 	}
 
 }
