@@ -53,7 +53,7 @@ public class MemberController {
 		MemberServicesResultBean result = memberServices.save(memberToSave);
 		
 		if(result.isOk()) {
-			return "membersHome";
+			return "memberRegistration";
 		} else {
 			model.addAttribute("message", result.getError());
 			return this.goToMembersForm(model, dto);

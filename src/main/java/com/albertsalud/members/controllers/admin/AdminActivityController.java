@@ -4,6 +4,7 @@ import javax.validation.Valid;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,8 +20,8 @@ import com.albertsalud.members.model.entities.Activity;
 import com.albertsalud.members.model.services.ActivityServices;
 
 @Controller
-@RequestMapping("/activities")
-public class ActivityController {
+@RequestMapping("/admin/activities")
+public class AdminActivityController {
 	
 	@Autowired
 	private ActivityServices activityServices;

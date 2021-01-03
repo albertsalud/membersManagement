@@ -1,10 +1,12 @@
 package com.albertsalud.members.model.services;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.albertsalud.members.model.dao.ActivityDAO;
 import com.albertsalud.members.model.entities.Activity;
 
 @Service
@@ -24,6 +26,10 @@ public class ActivityServices {
 
 	public List<Activity> findAll() {
 		return activityDao.findAll();
+	}
+
+	public List<Activity> getCurrentActivities() {
+		return activityDao.findByStartDateBeforeAndEndDateAfterOrderByTitle(new Date(), new Date());
 	}
 
 }

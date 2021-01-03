@@ -11,7 +11,7 @@
 <body>
 	<h1>Activities list</h1>
 	<p>
-		<a href="/activities/new">&gt; Add a new activity</a>
+		<a href="/admin/activities/new">&gt; Add a new activity</a>
 	</p>
 	<c:if test="${activities != null}">
 		<table>
@@ -32,7 +32,7 @@
 					<td>${currentActivity.points}</td>
 					<td>${currentActivity.code}</td>
 					<td>
-						<a href="/activities/${currentActivity.id}">&gt; Edit</a>
+						<a href="/admin/activities/${currentActivity.id}">&gt; Edit</a>
 					</td>
 				</tr>
 			</c:forEach>
