@@ -21,6 +21,7 @@ public class MembersFormDTO {
 	@Email
 	@NotBlank
 	private String email;
+	
 	private String phone;
 	
 	@NotBlank
