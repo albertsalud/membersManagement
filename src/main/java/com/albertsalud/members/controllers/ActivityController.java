@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.albertsalud.members.controllers.dto.ActivitiesCheckFormDTO;
+import com.albertsalud.members.controllers.exceptions.InvalidActivityCodeException;
 import com.albertsalud.members.controllers.exceptions.MemberNotFoundException;
 import com.albertsalud.members.model.entities.Member;
 import com.albertsalud.members.model.services.ActivityServices;
@@ -49,6 +50,8 @@ public class ActivityController {
 		if(result.hasErrors()) return goToActivitiesCheckFormDTO(model, dto);
 		
 		try {
+			if(!dto.getActivity().getCode().equals(dto.getCode())) throw new InvalidActivityCodeException();
+			
 			Member member = memberService.findByEmailAndPassword(dto.getEmail(), dto.getPassword());
 			if(member == null) throw new MemberNotFoundException();
 			
