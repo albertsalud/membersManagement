@@ -18,6 +18,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Member {
 	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
@@ -43,6 +44,5 @@ public class Member {
 		
 		activities.add(activity);
 	}
-	
 
 }
