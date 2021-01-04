@@ -32,4 +32,8 @@ public class ActivityServices {
 		return activityDao.findByStartDateBeforeAndEndDateAfterOrderByTitle(new Date(), new Date());
 	}
 
+	public List<Activity> findNextActivities() {
+		return activityDao.findTop5ByEndDateAfterOrderByStartDate(new Date());
+	}
+
 }

@@ -11,7 +11,8 @@ import com.albertsalud.members.model.dao.MembersDAO;
 import com.albertsalud.members.model.entities.Activity;
 import com.albertsalud.members.model.entities.Member;
 import com.albertsalud.members.model.services.result.MemberServicesResultBean;
-import com.albertsalud.members.security.UserPrincipal;
+import com.albertsalud.members.security.AdminPrincipal;
+import com.albertsalud.members.security.MemberPrincipal;
 
 @Service
 public class MemberServices implements UserDetailsService {
@@ -65,8 +66,19 @@ public class MemberServices implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		if("daudecinc".equals(username)) return new AdminPrincipal(this.generateAdminMember());
+		
 		Member member = membersDao.findByEmail(username).orElseThrow(()-> new UsernameNotFoundException("User not found"));
-		return new UserPrincipal(member);
+		return new MemberPrincipal(member);
+	}
+
+	private Member generateAdminMember() {
+		Member fakeMember = new Member();
+		fakeMember.setName("Dau de cinc");
+		fakeMember.setEmail("daudecinc");
+		fakeMember.setPassword(passwordEncoder.encode("jocsdetaula"));
+
+		return fakeMember;
 	}
 
 }

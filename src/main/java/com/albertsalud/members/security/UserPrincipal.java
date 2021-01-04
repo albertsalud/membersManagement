@@ -1,28 +1,24 @@
 package com.albertsalud.members.security;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.albertsalud.members.model.entities.Member;
 
-public class UserPrincipal implements UserDetails {
+public abstract class UserPrincipal implements UserDetails {
 	
-	private Member member;
-	
-	public UserPrincipal(Member member) {
-		this.member = member;
-	}
-
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
-
-	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return null;
+	private static final long serialVersionUID = 4572852261698186552L;
+	private Member member;
+	protected List<GrantedAuthority> authorities;
+	
+	protected UserPrincipal(Member member) {
+		this.member = member;
 	}
 
 	@Override
@@ -53,6 +49,15 @@ public class UserPrincipal implements UserDetails {
 	@Override
 	public boolean isEnabled() {
 		return true;
+	}
+	
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		return authorities;
+	}
+	
+	public Member getMember() {
+		return this.member;
 	}
 
 }

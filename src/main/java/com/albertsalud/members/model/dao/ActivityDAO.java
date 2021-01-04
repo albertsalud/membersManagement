@@ -11,4 +11,6 @@ public interface ActivityDAO extends JpaRepository<Activity, Long> {
 	
 	List<Activity> findByStartDateBeforeAndEndDateAfterOrderByTitle(Date start, Date end);
 
+	List<Activity> findTop5ByEndDateAfterOrderByStartDate(Date endDate);
+
 }

@@ -73,21 +73,14 @@ public class MemberController {
 		return "memberLoginForm";
 	}
 	
-	@PostMapping("/login")
-	public String login(@Valid @ModelAttribute MemberLoginFormDTO dto,
-			BindingResult result,
-			Model model) {
-		
-		if(result.hasErrors()) return goToMemberLoginForm(model, dto);
-		
-		Member member = memberServices.findByEmailAndPassword(dto.getEmail(), dto.getPassword());
-		if(member == null) {
-			model.addAttribute("errorMessage", "User not found");
-			return goToMemberLoginForm(model, dto);
-		}
-		
-		// TODO set user to security context
-		return "redirect:/private/members/home";
-	}
+//	@PostMapping("/login")
+//	public String login(@Valid @ModelAttribute MemberLoginFormDTO dto,
+//			BindingResult result,
+//			Model model) {
+//		
+//		if(result.hasErrors()) return goToMemberLoginForm(model, dto);
+//		
+//		return "forward:/login";
+//	}
 
 }

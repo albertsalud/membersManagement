@@ -7,17 +7,17 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Member login form</title>
+<title>Admin login form</title>
 </head>
 <body>
-	<h1>Member login form</h1>
+	<h1>Admin login form</h1>
 	<c:if test="${param.error != null}">
 		<p class="error">Invalid credentials</p>
 	</c:if>
-	<form:form method="post" modelAttribute="memberLoginFormDTO" action="/login">
+	<form:form method="post" modelAttribute="adminLoginFormDTO" action="/login">
 		<table>
 			<tr>
-				<td>E-mail:</td>
+				<td>Username:</td>
 				<td>
 					<form:input path="username"/>
 					<form:errors path="username"/>
