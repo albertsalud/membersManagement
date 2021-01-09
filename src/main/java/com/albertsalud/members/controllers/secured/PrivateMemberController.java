@@ -122,7 +122,7 @@ public class PrivateMemberController {
 		
 		if(result.isOk()) {
 			updateSecurityContext(authentication, result.getMember());
-			return "redirect:/private/members";
+			return "redirect:/private/home";
 		
 		} else {
 			model.addAttribute("message", result.getError());

@@ -38,5 +38,8 @@
 			</tr>
 		</table>
 	</form:form>
+	<p>
+		<a href="${context }/new">No member yet? Sign in!</a>
+	</p>
 </body>
 </html>
