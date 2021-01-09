@@ -4,13 +4,13 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-@EqualsAndHashCode(callSuper = false)
-public class MembersFormDTO extends ChangeMemberPasswordDTO {
+public class MembersDataFormDTO {
+	
+	private Long id;
 	
 	@NotBlank
 	private String name;

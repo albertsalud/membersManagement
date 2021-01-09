@@ -59,5 +59,9 @@ public abstract class UserPrincipal implements UserDetails {
 	public Member getMember() {
 		return this.member;
 	}
+	
+	public void setMember(Member member) {
+		this.member = member;
+	}
 
 }

@@ -1,4 +1,4 @@
-package com.albertsalud.members.controllers.admin;
+package com.albertsalud.members.controllers.secured;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;

@@ -1,4 +1,4 @@
-package com.albertsalud.members.controllers;
+package com.albertsalud.members.controllers.secured;
 
 import javax.validation.Valid;
 

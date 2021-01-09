@@ -1,4 +1,4 @@
-package com.albertsalud.members.controllers.admin;
+package com.albertsalud.members.controllers.secured;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
