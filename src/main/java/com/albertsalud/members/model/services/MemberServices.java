@@ -1,6 +1,7 @@
 package com.albertsalud.members.model.services;
 
 import java.util.Calendar;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -159,6 +160,7 @@ public class MemberServices implements UserDetailsService {
 					
 					return activityDate.get(Calendar.YEAR) == myYear;
 				})
+				.sorted(Comparator.comparing(Activity::getStartDate))
 				.collect(Collectors.toList());
 	}
 
