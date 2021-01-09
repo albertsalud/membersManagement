@@ -1,7 +1,9 @@
 package com.albertsalud.members.model.services;
 
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,7 +27,9 @@ public class ActivityServices {
 	}
 
 	public List<Activity> findAll() {
-		return activityDao.findAll();
+		return activityDao.findAll().stream()
+				.sorted(Comparator.comparing(Activity::getStartDate).reversed())
+				.collect(Collectors.toList());
 	}
 
 	public List<Activity> getCurrentActivities() {

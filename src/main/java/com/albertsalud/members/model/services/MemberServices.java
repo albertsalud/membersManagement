@@ -34,7 +34,6 @@ public class MemberServices implements UserDetailsService {
 	private PasswordEncoder passwordEncoder;
 	
 	public MemberServicesResultBean registryMember(Member memberToRegistry) {
-		memberToRegistry.setBkpPassword(memberToRegistry.getPassword());
 		managePassword(memberToRegistry);
 		return saveMember(memberToRegistry);
 	}
@@ -144,7 +143,6 @@ public class MemberServices implements UserDetailsService {
 
 	private void manageMemberPassword(Member member, @Valid ChangeMemberPasswordDTO dto) {
 		member.setPassword(dto.getPassword());
-		member.setBkpPassword(dto.getPassword());
 		managePassword(member);
 		
 	}
