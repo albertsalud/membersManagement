@@ -2,6 +2,7 @@ package com.albertsalud.members.controllers.dto;
 
 import java.util.Date;
 
+import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -37,7 +38,8 @@ public class ActivitiesFormDTO {
 	
 	@NotNull
 	@Min(value = 0)
-	private Long points;
+	@DecimalMin(value = "0.0")
+	private Float points;
 	
 	@NotBlank
 	@Size(min = 4, max = 15)

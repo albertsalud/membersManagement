@@ -48,8 +48,8 @@ public class Member {
 		activities.add(activity);
 	}
 	
-	public Long getPoints() {
-		Long tmpPoints = 0l;
+	public Float getPoints() {
+		Float tmpPoints = 0f;
 		
 		if(activities != null) {
 			for(Activity currentActivity : activities) {

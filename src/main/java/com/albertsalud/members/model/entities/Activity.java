@@ -32,7 +32,7 @@ public class Activity {
 	private Date endDate;
 	
 	@Column(nullable = false)
-	private Long points;
+	private Float points;
 	
 	@Column(nullable = false)
 	private String code;

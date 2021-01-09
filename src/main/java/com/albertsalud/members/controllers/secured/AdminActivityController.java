@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.albertsalud.members.controllers.dto.ActivitiesFormDTO;
 import com.albertsalud.members.controllers.dto.ParticipationFormDTO;
 import com.albertsalud.members.controllers.exceptions.ActivityNotFoundException;
+import com.albertsalud.members.controllers.exceptions.MemberNotFoundException;
 import com.albertsalud.members.model.entities.Activity;
+import com.albertsalud.members.model.entities.Member;
 import com.albertsalud.members.model.services.ActivityServices;
 import com.albertsalud.members.model.services.MemberServices;
 import com.albertsalud.members.model.services.result.MemberServicesResultBean;
@@ -135,7 +137,7 @@ public class AdminActivityController {
 		
 		} catch (ActivityNotFoundException e ) {
 			model.addAttribute("message", e.getMessage());
-			return "redirect:/";
+			return "redirect:/admin/activities";
 		}
 	}
 	
@@ -154,5 +156,32 @@ public class AdminActivityController {
 			model.addAttribute("message", serviceResult.getError());
 		}
 		return this.getActivityMembers(model, dto.getActivity().getId());
+	}
+	
+	@GetMapping("/{activityId}/members/{memberId}/remove")
+	public String removeActivity(@PathVariable(name = "activityId") Long activityId,
+			@PathVariable(name = "memberId") Long memberId,
+			Model model
+			) {
+		
+		try {
+			Activity activity = activityServices.findById(activityId);
+			if(activity == null) throw new ActivityNotFoundException();
+			
+			Member member = memberServices.findById(memberId);
+			if(member == null) throw new MemberNotFoundException();
+			
+			MemberServicesResultBean result = memberServices.removeActivity(member, activity);
+			
+			if(!result.isOk()) throw new Exception("Unable to remove activity: " + result.getError());
+		
+		} catch (ActivityNotFoundException e) {
+			model.addAttribute("message", e.getMessage());
+			return "redirect:/admin/activities";
+		
+		} catch (Exception e) {
+			model.addAttribute("message", e.getMessage());
+		}
+		return "redirect:/admin/activities/" + activityId + "/members";
 	}
 }

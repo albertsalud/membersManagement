@@ -175,4 +175,23 @@ public class MemberServices implements UserDetailsService {
 		return membersDao.findAll();
 	}
 
+	public Member findById(Long memberId) {
+		return membersDao.findById(memberId).orElse(null);
+	}
+
+	public MemberServicesResultBean removeActivity(Member member, Activity activity) {
+		MemberServicesResultBean result = new MemberServicesResultBean();
+		
+		try {
+			result.setOk(member.getActivities().remove(activity));
+			if(result.isOk()) this.saveMember(member);
+		
+		} catch (Exception e) {
+			result.setOk(false);
+			result.setError(e.getMessage());
+		}
+		
+		return result;
+	}
+
 }
