@@ -42,5 +42,6 @@
 			</c:forEach>
 		</table>
 	</c:if>
+	<c:import url="logout.jsp" />
 </body>
 </html>
