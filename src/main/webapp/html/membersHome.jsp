@@ -36,12 +36,18 @@
 			<th>Date</th>
 			<th>Activity</th>
 			<th>Points</th>
+			<th>&nbsp;</th>
 		</tr>
 		<c:forEach items="${activities}" var="currentActivity">
 			<tr>
 				<td><fmt:formatDate value="${currentActivity.startDate}" pattern="dd/MM/yyyy HH:mm"/></td>
 				<td>${currentActivity.title}</td>
 				<td>${currentActivity.points}</td>
+				<td>
+					<c:if test="${currentActivity.startDate.before(now) && currentActivity.endDate.after(now)}">
+						<a href="/activities/check">&gt; Check in</a>
+					</c:if>
+				</td>
 			</tr>
 		</c:forEach>
 	</table>

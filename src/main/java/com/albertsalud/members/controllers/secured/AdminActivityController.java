@@ -14,9 +14,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.albertsalud.members.controllers.dto.ActivitiesFormDTO;
+import com.albertsalud.members.controllers.dto.ParticipationFormDTO;
 import com.albertsalud.members.controllers.exceptions.ActivityNotFoundException;
 import com.albertsalud.members.model.entities.Activity;
 import com.albertsalud.members.model.services.ActivityServices;
+import com.albertsalud.members.model.services.MemberServices;
+import com.albertsalud.members.model.services.result.MemberServicesResultBean;
 
 @Controller
 @RequestMapping("/admin/activities")
@@ -24,6 +27,9 @@ public class AdminActivityController {
 	
 	@Autowired
 	private ActivityServices activityServices;
+	
+	@Autowired
+	private MemberServices memberServices;
 	
 	@Autowired
 	private ModelMapper modelMapper;
@@ -107,5 +113,46 @@ public class AdminActivityController {
 		
 		return activity;
 		
+	}
+	
+	@GetMapping("/{activityId}/members")
+	public String getActivityMembers(Model model,
+			@PathVariable(name = "activityId") Long activityId) {
+		
+		model.addAttribute("allMembers", memberServices.findAllActive());
+		model.addAttribute("members", memberServices.findByActivityId(activityId));
+		
+		Activity activity = activityServices.findById(activityId);
+		
+		try {
+			if(activity == null) throw new ActivityNotFoundException();
+			
+			model.addAttribute("activity", activity);
+			ParticipationFormDTO dto = new ParticipationFormDTO(activity);
+			
+			model.addAttribute("participationFormDTO", dto);
+			return "participationList";
+		
+		} catch (ActivityNotFoundException e ) {
+			model.addAttribute("message", e.getMessage());
+			return "redirect:/";
+		}
+	}
+	
+	@PostMapping("/{activityId}/members")
+	public String addMemberToActivity(@Valid @ModelAttribute ParticipationFormDTO dto,
+			BindingResult result,
+			Model model) {
+		
+		if(result.hasErrors()) {
+			model.addAttribute("message", "Unable to add member: unknow.");
+		}
+		
+		MemberServicesResultBean serviceResult = memberServices.addActivity(dto.getMember(), dto.getActivity());
+		
+		if(!serviceResult.isOk()) {
+			model.addAttribute("message", serviceResult.getError());
+		}
+		return this.getActivityMembers(model, dto.getActivity().getId());
 	}
 }

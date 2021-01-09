@@ -10,12 +10,13 @@
 </head>
 <body>
 	<h1>Activities participation</h1>
+	<fmt:formatDate var="year" value="${now}" pattern="yyyy" />
 	<form action="/private/members/participation" method="get" name="changeYear">
 		<p>
 			Select year:
 			<select name="year" onchange="document.forms.changeYear.submit();">
-				<option value="2020">2020</option>
-				<option value="2021">2021</option>
+				<option value="${year}">${year}</option>
+				<option ${param.year == year-1 ? 'selected' : ''} value="${year-1}">${year-1}</option>
 			</select>
 		</p>
 	</form>

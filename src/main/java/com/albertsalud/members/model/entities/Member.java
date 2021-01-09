@@ -59,5 +59,9 @@ public class Member {
 		
 		return tmpPoints;
 	}
+	
+	public String getFullName() {
+		return this.name + " " + this.surname;
+	}
 
 }

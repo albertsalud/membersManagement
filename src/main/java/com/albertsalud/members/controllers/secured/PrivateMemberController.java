@@ -1,6 +1,7 @@
 package com.albertsalud.members.controllers.secured;
 
 import java.util.Calendar;
+import java.util.Date;
 
 import javax.validation.Valid;
 
@@ -44,6 +45,7 @@ public class PrivateMemberController {
 		member.setActivities(memberServices.getActivitiesByYear(member, Calendar.getInstance().get(Calendar.YEAR)));
 		model.addAttribute("member", member);
 		model.addAttribute("activities", activityServices.findNextActivities());
+		model.addAttribute("now", new Date());
 
 		return "membersHome";
 	}
@@ -134,7 +136,7 @@ public class PrivateMemberController {
 	public String getParticipation(Model model, 
 			@RequestParam(name = "year", required = false) Integer year,
 			Authentication authentication) {
-		
+		model.addAttribute("now", new Date());
 		model.addAttribute("activities", 
 				memberServices.getActivitiesByYear(
 						this.getMemberFromSecurityContext(authentication), year));

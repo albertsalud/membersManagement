@@ -10,6 +10,9 @@
 </head>
 <body>
 	<h1>Activities list</h1>
+	<c:if test="${message != null}">
+		<p class="error">${message}</p>
+	</c:if>
 	<p>
 		<a href="/admin/activities/new">&gt; Add a new activity</a>
 	</p>
@@ -33,6 +36,7 @@
 					<td>${currentActivity.code}</td>
 					<td>
 						<a href="/admin/activities/${currentActivity.id}">&gt; Edit</a>
+						<a href="/admin/activities/${currentActivity.id}/members">&gt; Manage members</a>
 					</td>
 				</tr>
 			</c:forEach>

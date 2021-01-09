@@ -167,4 +167,12 @@ public class MemberServices implements UserDetailsService {
 		return year.intValue();
 	}
 
+	public List<Member> findByActivityId(Long activityId) {
+		return membersDao.findByActivitiesId(activityId);
+	}
+
+	public List<Member> findAllActive() {
+		return membersDao.findAll();
+	}
+
 }
