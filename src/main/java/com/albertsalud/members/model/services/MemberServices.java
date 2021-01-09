@@ -39,15 +39,12 @@ public class MemberServices implements UserDetailsService {
 	}
 
 	private void managePassword(Member member) {
-		member.setPassword(encryptPassword(member.getPassword()));
+		member.setPassword(passwordEncoder.encode(member.getPassword()));
 	}
 	
-	private String encryptPassword(String password) {
-		return passwordEncoder.encode(password);
-	}
 
 	public Member findByEmailAndPassword(String email, String password) {
-		return membersDao.findByEmailAndPassword(email, encryptPassword(password)).orElse(null);
+		return membersDao.findByEmailAndPassword(email, passwordEncoder.encode(password)).orElse(null);
 	}
 
 	public MemberServicesResultBean addActivity(Member member, Activity activity) {

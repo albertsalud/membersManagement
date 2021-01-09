@@ -19,7 +19,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/private/*").hasAuthority(UserRole.MEMBER.name())
 				.antMatchers("/admin/*").hasAuthority(UserRole.ADMIN.name())
 				.antMatchers("/", 
-						"/activities/", "/activities/*",
+//						"/activities/", "/activities/*",
 						"/members", "/members/*",
 						"/admin", "/login").permitAll()
 				.anyRequest().authenticated()

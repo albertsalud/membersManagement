@@ -3,6 +3,7 @@ package com.albertsalud.members.controllers;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -13,11 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.albertsalud.members.controllers.dto.ActivitiesCheckFormDTO;
 import com.albertsalud.members.controllers.exceptions.InvalidActivityCodeException;
-import com.albertsalud.members.controllers.exceptions.MemberNotFoundException;
 import com.albertsalud.members.model.entities.Member;
 import com.albertsalud.members.model.services.ActivityServices;
 import com.albertsalud.members.model.services.MemberServices;
 import com.albertsalud.members.model.services.result.MemberServicesResultBean;
+import com.albertsalud.members.security.UserPrincipal;
 
 @Controller
 @RequestMapping("/activities")
@@ -43,7 +44,9 @@ public class ActivityController {
 	}
 	
 	@PostMapping("/check")
-	public String checkActivity(@Valid @ModelAttribute ActivitiesCheckFormDTO dto,
+	public String checkActivity(
+			Authentication authentication,
+			@Valid @ModelAttribute ActivitiesCheckFormDTO dto,
 			BindingResult result,
 			Model model) {
 		
@@ -52,8 +55,7 @@ public class ActivityController {
 		try {
 			if(!dto.getActivity().getCode().equals(dto.getCode())) throw new InvalidActivityCodeException();
 			
-			Member member = memberService.findByEmailAndPassword(dto.getEmail(), dto.getPassword());
-			if(member == null) throw new MemberNotFoundException();
+			Member member = getMemberFromSecurityContext(authentication);
 			
 			MemberServicesResultBean resultBean = memberService.addActivity(member, dto.getActivity());
 			if(!resultBean.isOk()) throw new Exception(resultBean.getError());
@@ -67,6 +69,11 @@ public class ActivityController {
 		
 		return "activityRegistration";
 		
+	}
+
+	private Member getMemberFromSecurityContext(Authentication authentication) {
+		UserPrincipal user = (UserPrincipal)authentication.getPrincipal();
+		return user.getMember();
 	}
 
 }

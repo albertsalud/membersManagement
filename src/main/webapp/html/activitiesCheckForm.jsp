@@ -28,20 +28,6 @@
 						</td>
 					</tr>
 					<tr>
-						<td>E-mail:</td>
-						<td>
-							<form:input path="email" />
-							<form:errors path="email" />
-						</td>
-					</tr>
-					<tr>
-						<td>Password:</td>
-						<td>
-							<form:password path="password" />
-							<form:errors path="password" />
-						</td>
-					</tr>
-					<tr>
 						<td>Activity code:</td>
 						<td>
 							<form:input path="code" />
@@ -57,5 +43,8 @@
 			</form:form>
 		</c:otherwise>
 	</c:choose>
+	<p>
+		<a href="/private/members/">&lt; Back to member's home</a>
+	</p>
 </body>
 </html>
