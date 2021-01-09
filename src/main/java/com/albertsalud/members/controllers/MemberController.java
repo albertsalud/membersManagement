@@ -51,7 +51,7 @@ public class MemberController {
 		
 		Member memberToSave = modelMapper.map(dto, Member.class);
 		
-		MemberServicesResultBean result = memberServices.save(memberToSave);
+		MemberServicesResultBean result = memberServices.registryMember(memberToSave);
 		
 		if(result.isOk()) {
 			return "memberRegistration";

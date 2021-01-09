@@ -1,5 +1,7 @@
 package com.albertsalud.members.controllers.secured;
 
+import java.util.Calendar;
+
 import javax.validation.Valid;
 
 import org.modelmapper.ModelMapper;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.albertsalud.members.controllers.dto.ChangeMemberPasswordDTO;
 import com.albertsalud.members.controllers.dto.MembersDataFormDTO;
@@ -37,8 +40,11 @@ public class PrivateMemberController {
 	
 	@GetMapping(value= {"", "/"})
 	public String goToMembersHome(Model model, Authentication authentication) {
-		model.addAttribute("member", this.getMemberFromSecurityContext(authentication));
+		Member member = this.getMemberFromSecurityContext(authentication);
+		member.setActivities(memberServices.getActivitiesByYear(member, Calendar.getInstance().get(Calendar.YEAR)));
+		model.addAttribute("member", member);
 		model.addAttribute("activities", activityServices.findNextActivities());
+
 		return "membersHome";
 	}
 	
@@ -122,6 +128,17 @@ public class PrivateMemberController {
 			
 		}
 		
+	}
+	
+	@GetMapping("/participation")
+	public String getParticipation(Model model, 
+			@RequestParam(name = "year", required = false) Integer year,
+			Authentication authentication) {
+		
+		model.addAttribute("activities", 
+				memberServices.getActivitiesByYear(
+						this.getMemberFromSecurityContext(authentication), year));
+		return "membersParticipation";
 	}
 
 }

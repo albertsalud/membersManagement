@@ -1,5 +1,9 @@
 package com.albertsalud.members.model.services;
 
+import java.util.Calendar;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,10 +32,10 @@ public class MemberServices implements UserDetailsService {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	
-	public MemberServicesResultBean save(Member memberToSave) {
-		memberToSave.setBkpPassword(memberToSave.getPassword());
-		managePassword(memberToSave);
-		return saveMember(memberToSave);
+	public MemberServicesResultBean registryMember(Member memberToRegistry) {
+		memberToRegistry.setBkpPassword(memberToRegistry.getPassword());
+		managePassword(memberToRegistry);
+		return saveMember(memberToRegistry);
 	}
 	
 	private MemberServicesResultBean saveMember(Member memberToSave) {
@@ -68,7 +72,7 @@ public class MemberServices implements UserDetailsService {
 		}
 		
 		member.addActivity(activity);
-		return this.save(member);
+		return this.saveMember(member);
 		
 	}
 
@@ -142,6 +146,25 @@ public class MemberServices implements UserDetailsService {
 		member.setBkpPassword(dto.getPassword());
 		managePassword(member);
 		
+	}
+
+	public List<Activity> getActivitiesByYear(Member member, Integer year) {
+		
+		int myYear = manageYear(year);
+		
+		return member.getActivities().stream()
+				.filter(a -> {
+					Calendar activityDate = Calendar.getInstance();
+					activityDate.setTime(a.getStartDate());
+					
+					return activityDate.get(Calendar.YEAR) == myYear;
+				})
+				.collect(Collectors.toList());
+	}
+
+	private int manageYear(Integer year) {
+		if(year == null) return Calendar.getInstance().get(Calendar.YEAR);
+		return year.intValue();
 	}
 
 }
