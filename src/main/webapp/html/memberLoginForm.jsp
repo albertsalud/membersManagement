@@ -5,6 +5,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE html>
 <html>
+<c:set var="context" value="${pageContext.request.contextPath}" scope="application"/>
 <head>
 <meta charset="UTF-8">
 <title>Member login form</title>
@@ -14,7 +15,7 @@
 	<c:if test="${param.error != null}">
 		<p class="error">Invalid credentials</p>
 	</c:if>
-	<form:form method="post" modelAttribute="memberLoginFormDTO" action="/login">
+	<form:form method="post" modelAttribute="memberLoginFormDTO" action="${context}/login">
 		<table>
 			<tr>
 				<td>E-mail:</td>

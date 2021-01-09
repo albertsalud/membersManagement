@@ -14,7 +14,7 @@
 	<c:if test="${message != null}">
 		<p class="error">${message}</p>
 	</c:if>
-	<form:form method="post" modelAttribute="membersDataFormDTO" action="/private/members/save">
+	<form:form method="post" modelAttribute="membersDataFormDTO" action="${context}/private/save">
 		<form:hidden path="id"/>
 		<table>
 			<tr>
@@ -53,7 +53,7 @@
 		</table>	
 	</form:form>
 	<p>
-		<a href="/private/members/">&lt; Back to member's home</a>
+		<a href="${context}/private/home">&lt; Back to member's home</a>
 	</p>
 </body>
 </html>

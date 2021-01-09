@@ -19,7 +19,7 @@ import com.albertsalud.members.model.services.MemberServices;
 import com.albertsalud.members.model.services.result.MemberServicesResultBean;
 
 @Controller
-@RequestMapping("/members")
+@RequestMapping("/")
 public class MemberController {
 	
 	@Autowired

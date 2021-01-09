@@ -15,7 +15,7 @@
 		<p class="error">${message}</p>
 	</c:if>
 	<p>
-		<a href="/admin/activities">&lt; Return to activities list</a>
+		<a href="${context}/admin/activities">&lt; Return to activities list</a>
 	</p>
 	<p>Title: ${activity.title}</p>
 	<p>Date: <fmt:formatDate value="${activity.startDate}" pattern="dd/MM/yyyy HH:mm"/></p>
@@ -30,7 +30,7 @@
 				<tr>
 					<td>${currentMember.fullName}</td>
 					<td>
-						<a href="/admin/activities/${activity.id}/members/${currentMember.id}/remove" onclick="return confirm('Sure?');">&gt; Remove</a>
+						<a href="${context}/admin/activities/${activity.id}/members/${currentMember.id}/remove" onclick="return confirm('Sure?');">&gt; Remove</a>
 					</td>
 				</tr>
 			</c:forEach>

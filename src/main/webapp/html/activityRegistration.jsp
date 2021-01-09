@@ -11,7 +11,7 @@
 	<p>You have been registered into ${activity.title}.</p>
 	<p>Your points account has been increased in ${activity.points} points.</p>
 	<p>
-		<a href="/private/members">&lt; Back to member's home</a>
+		<a href="${context}/private/home">&lt; Back to member's home</a>
 	</p>
 </body>
 </html>

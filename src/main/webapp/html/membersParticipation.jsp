@@ -11,7 +11,7 @@
 <body>
 	<h1>Activities participation</h1>
 	<fmt:formatDate var="year" value="${now}" pattern="yyyy" />
-	<form action="/private/members/participation" method="get" name="changeYear">
+	<form action="${context}/private/participation" method="get" name="changeYear">
 		<p>
 			Select year:
 			<select name="year" onchange="document.forms.changeYear.submit();">
@@ -40,7 +40,7 @@
 		</table>
 	</c:if>
 	<p>
-		<a href="/private/members/">&lt; Back to member's home</a>
+		<a href="${context}/private/home">&lt; Back to member's home</a>
 	</p>
 </body>
 </html>

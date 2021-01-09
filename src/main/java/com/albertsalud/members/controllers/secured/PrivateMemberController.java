@@ -27,7 +27,7 @@ import com.albertsalud.members.model.services.result.MemberServicesResultBean;
 import com.albertsalud.members.security.UserPrincipal;
 
 @Controller
-@RequestMapping("/private/members")
+@RequestMapping("/private")
 public class PrivateMemberController {
 	
 	@Autowired
@@ -39,7 +39,7 @@ public class PrivateMemberController {
 	@Autowired
 	private MemberServices memberServices;
 	
-	@GetMapping(value= {"", "/"})
+	@GetMapping("/home")
 	public String goToMembersHome(Model model, Authentication authentication) {
 		Member member = this.getMemberFromSecurityContext(authentication);
 		member.setActivities(memberServices.getActivitiesByYear(member, Calendar.getInstance().get(Calendar.YEAR)));
@@ -80,7 +80,7 @@ public class PrivateMemberController {
 		
 		if(result.isOk()) {
 			updateSecurityContext(authentication, result.getMember());
-			return "redirect:/private/members";
+			return "redirect:/private/home";
 		} else {
 			model.addAttribute("message", result.getError());
 			return this.getMemberDataForm(model, dto);

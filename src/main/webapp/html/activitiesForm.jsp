@@ -39,7 +39,7 @@
 <body>
 	<h1>Activity form</h1>
 	<p>
-		<a href="/admin/activities">&lt; Return to activities list</a>
+		<a href="${context}/admin/activities">&lt; Return to activities list</a>
 	</p>
 	<spring:hasBindErrors name="activitiesFormDTO">
 		<c:forEach var="error" items="${errors.allErrors}">
@@ -49,7 +49,7 @@
 			</c:if>
 		</c:forEach>
 	</spring:hasBindErrors>
-	<form:form action="/admin/activities/save" modelAttribute="activitiesFormDTO" method="post">
+	<form:form action="${context}/admin/activities/save" modelAttribute="activitiesFormDTO" method="post">
 		<form:hidden path="id"/>
 		<table>
 			<tr>

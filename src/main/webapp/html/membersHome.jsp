@@ -24,9 +24,9 @@
 	<p>
 		<strong>Your phone:</strong> ${member.phone}
 	</p>
-	<p><a href="/private/members/data">&gt; Change my data</a></p>
-	<p><a href="/private/members/changePassword">&gt; Change my password</a></p>
-	<p><a href="/private/members/participation">&gt; Check my activities participation</a></p>
+	<p><a href="${context}/private/data">&gt; Change my data</a></p>
+	<p><a href="${context}/private/changePassword">&gt; Change my password</a></p>
+	<p><a href="${context}/private/participation">&gt; Check my activities participation</a></p>
 	
 	<p>You have accumulated ${member.points} points this year.</p>
 	
@@ -45,7 +45,7 @@
 				<td>${currentActivity.points}</td>
 				<td>
 					<c:if test="${currentActivity.startDate.before(now) && currentActivity.endDate.after(now)}">
-						<a href="/activities/check">&gt; Check in</a>
+						<a href="${context}/activities/check">&gt; Check in</a>
 					</c:if>
 				</td>
 			</tr>

@@ -14,7 +14,7 @@
 		<p class="error">${message}</p>
 	</c:if>
 	<p>
-		<a href="/admin/activities/new">&gt; Add a new activity</a>
+		<a href="${context}/admin/activities/new">&gt; Add a new activity</a>
 	</p>
 	<c:if test="${activities != null}">
 		<table>
@@ -35,8 +35,8 @@
 					<td>${currentActivity.points}</td>
 					<td>${currentActivity.code}</td>
 					<td>
-						<a href="/admin/activities/${currentActivity.id}">&gt; Edit</a>
-						<a href="/admin/activities/${currentActivity.id}/members">&gt; Manage members</a>
+						<a href="${context}/admin/activities/${currentActivity.id}">&gt; Edit</a>
+						<a href="${context}/admin/activities/${currentActivity.id}/members">&gt; Manage members</a>
 					</td>
 				</tr>
 			</c:forEach>

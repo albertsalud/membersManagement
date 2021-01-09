@@ -16,16 +16,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http
 			.csrf().disable()
 			.authorizeRequests()
+				.antMatchers("/", "/new", "/save", "/login").permitAll()
+				.antMatchers("/private", "/private/").hasAnyAuthority(UserRole.MEMBER.name(), UserRole.ADMIN.name())
 				.antMatchers("/private/*").hasAuthority(UserRole.MEMBER.name())
 				.antMatchers("/admin/*").hasAuthority(UserRole.ADMIN.name())
-				.antMatchers("/", 
-//						"/activities/", "/activities/*",
-						"/members", "/members/*",
-						"/admin", "/login").permitAll()
 				.anyRequest().authenticated()
 				.and()
 			.formLogin()
-				.loginPage("/members")
+				.loginPage("/")
 				.loginProcessingUrl("/login").permitAll()
 				.defaultSuccessUrl("/private")
 //				.and()

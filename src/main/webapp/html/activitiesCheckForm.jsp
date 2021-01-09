@@ -19,7 +19,7 @@
 			<c:if test="${errorMessage != null }">
 				<p class="error">${errorMessage}</p>
 			</c:if>
-			<form:form method="post" modelAttribute="activitiesCheckFormDTO" action="/activities/check">
+			<form:form method="post" modelAttribute="activitiesCheckFormDTO" action="${context}/activities/check">
 				<table>
 					<tr>
 						<td>Activity:</td>
@@ -44,7 +44,7 @@
 		</c:otherwise>
 	</c:choose>
 	<p>
-		<a href="/private/members/">&lt; Back to member's home</a>
+		<a href="${context}/private/home">&lt; Back to member's home</a>
 	</p>
 </body>
 </html>

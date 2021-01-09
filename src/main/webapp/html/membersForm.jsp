@@ -14,7 +14,7 @@
 	<c:if test="${message != null}">
 		<p class="error">${message}</p>
 	</c:if>
-	<form:form method="post" modelAttribute="membersFormDTO" action="/members/save">
+	<form:form method="post" modelAttribute="membersFormDTO" action="${context}/members/save">
 		<form:hidden path="id"/>
 		<table>
 			<tr>

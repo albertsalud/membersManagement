@@ -19,7 +19,7 @@ public class PrivateMainController {
 		if(user instanceof AdminPrincipal) {
 			return "redirect:/admin/activities";
 		} else {
-			return "redirect:/private/members";
+			return "redirect:/private/home";
 		}
 		
 		
