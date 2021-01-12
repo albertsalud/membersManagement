@@ -13,32 +13,22 @@
 	</div>
 	<div id="content-wrapper">
 		<div id="content" class="no-news">
-		<h1>Member login form</h1>
+		<h1>Àrea privada</h1>
 		<c:if test="${param.error != null}">
 			<p class="error">Invalid credentials</p>
 		</c:if>
-		<form:form method="post" modelAttribute="memberLoginFormDTO" action="${context}/login">
-			<table>
-				<tr>
-					<td>E-mail:</td>
-					<td>
-						<form:input path="username"/>
-						<form:errors path="username"/>
-					</td>
-				</tr>
-				<tr>
-					<td>Password:</td>
-					<td>
-						<form:password path="password"/>
-						<form:errors path="password"/>
-					</td>
-				</tr>
-				<tr>
-					<td colspan="2">
-						<input type="submit" value="Log in" class="boton"/>
-					</td>
-				</tr>
-			</table>
+		<form:form method="post" modelAttribute="memberLoginFormDTO" action="${context}/login" id="form-login">
+			<p>
+				<span>E-mail: </span>
+				<form:input path="username"/>
+				<form:errors path="username" cssClass="error"/>
+			</p>
+			<p>
+				<span>Paraula de pas: </span>
+				<form:password path="password"/>
+				<form:errors path="password" cssClass="error" />
+			</p>
+			<input type="submit" value="Accedir" class="boton"/>
 		</form:form>
 		<p>
 			<a href="${context }/new">No member yet? Sign in!</a>
