@@ -4,53 +4,64 @@
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>MembersHome</title>
-</head>
+<jsp:include page="head.jsp" />
 <body>
-	<h1>Members home</h1>
-	<p>Welcome to members area.</p>
-	<p>In this place you can check your data, your activities participation and the points obtained.</p>
-	<p>
-		<strong>Your name:</strong> ${member.name}
-	</p>
-	<p>
-		<strong>Your surname:</strong> ${member.surname}
-	</p>
-	<p>
-		<strong>Your e-mail:</strong> ${member.email}
-	</p>
-	<p>
-		<strong>Your phone:</strong> ${member.phone}
-	</p>
-	<p><a href="${context}/private/data">&gt; Change my data</a></p>
-	<p><a href="${context}/private/changePassword">&gt; Change my password</a></p>
-	<p><a href="${context}/private/participation">&gt; Check my activities participation</a></p>
-	
-	<p>You have accumulated ${member.points} points this year.</p>
-	
-	<p>You can see next planified activities below:</p>
-	<table>
-		<tr>
-			<th>Date</th>
-			<th>Activity</th>
-			<th>Points</th>
-			<th>&nbsp;</th>
-		</tr>
-		<c:forEach items="${activities}" var="currentActivity">
-			<tr>
-				<td><fmt:formatDate value="${currentActivity.startDate}" pattern="dd/MM/yyyy HH:mm"/></td>
-				<td>${currentActivity.title}</td>
-				<td>${currentActivity.points}</td>
-				<td>
-					<c:if test="${currentActivity.startDate.before(now) && currentActivity.endDate.after(now)}">
-						<a href="${context}/activities/check">&gt; Check in</a>
-					</c:if>
-				</td>
-			</tr>
-		</c:forEach>
-	</table>
-	<c:import url="logout.jsp" />
+	<div id="header">
+		<c:import url="http://daudecinc.tk/menu.html" />
+	</div>
+	<div id="content-wrapper">
+		<div id="content" class="no-news">
+			<h1>Àrea privada</h1>
+			<p>Benvingut/da a l'area privada de socis.</p>
+			<p>Aqui podràs canviar les teves dades personals, comprovar els punts acumulats, i veure properes activitats planificades.</p>
+			
+			<h2>Les teves dades</h2>
+			<p>
+				<strong>Nom:</strong> ${member.name}
+			</p>
+			<p>
+				<strong>Cognoms:</strong> ${member.surname}
+			</p>
+			<p>
+				<strong>E-mail:</strong> ${member.email}
+			</p>
+			<p>
+				<strong>Telèfon:</strong> ${member.phone}
+			</p>
+			<p><a href="${context}/private/data">&gt; Canvia les meves dades</a></p>
+			<p><a href="${context}/private/changePassword">&gt; Canvia la meva paraula de pas</a></p>
+			
+			<h2>La teva participació</h2>
+			<p>Has acumulat <strong>${member.points}</strong> punts aquest any.</p>
+			<p><a href="${context}/private/participation">&gt; Comprova la meva participació</a></p>
+			
+			<h2>Properes activitats</h2>
+			<p>A continuació tens una llista amb noves propostes:</p>
+			<table id="data-table" cellpadding="5" cellspacing="0">
+				<tr>
+					<th>Data</th>
+					<th>Activitat</th>
+					<th>Punts</th>
+					<th>&nbsp;</th>
+				</tr>
+				<c:forEach items="${activities}" var="currentActivity">
+					<tr>
+						<td><fmt:formatDate value="${currentActivity.startDate}" pattern="dd/MM/yyyy HH:mm"/></td>
+						<td>${currentActivity.title}</td>
+						<td>${currentActivity.points}</td>
+						<td>
+							<c:if test="${currentActivity.startDate.before(now) && currentActivity.endDate.after(now)}">
+								<a href="${context}/activities/check">&gt; Participar</a>
+							</c:if>
+						</td>
+					</tr>
+				</c:forEach>
+			</table>
+			<c:import url="logout.jsp" />
+		</div>
+		<div id="tools">
+			<c:import url="http://daudecinc.tk/tools.html" />
+		</div>
+	</div>
 </body>
 </html>

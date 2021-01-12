@@ -96,7 +96,7 @@ public class MemberServices implements UserDetailsService {
 	public MemberServicesResultBean updateMember(@Valid MembersDataFormDTO dto) {
 		MemberServicesResultBean result = new MemberServicesResultBean();
 		
-		Member member = membersDao.findById(dto.getId()).orElse(null);
+		Member member = membersDao.findByIdAndPassword(dto.getId(), dto.getPassword()).orElse(null);
 		try {
 			if(member == null) throw new MemberNotFoundException();
 			manageMemberData(member, dto);
@@ -124,7 +124,7 @@ public class MemberServices implements UserDetailsService {
 	public MemberServicesResultBean updateMember(@Valid ChangeMemberPasswordDTO dto) {
 		MemberServicesResultBean result = new MemberServicesResultBean();
 		
-		Member member = membersDao.findById(dto.getId()).orElse(null);
+		Member member = membersDao.findByEmailAndPassword(dto.getEmail(), dto.getPassword()).orElse(null);
 		try {
 			if(member == null) throw new MemberNotFoundException();
 			manageMemberPassword(member, dto);
@@ -142,7 +142,7 @@ public class MemberServices implements UserDetailsService {
 	}
 
 	private void manageMemberPassword(Member member, @Valid ChangeMemberPasswordDTO dto) {
-		member.setPassword(dto.getPassword());
+		member.setPassword(dto.getNewPassword());
 		managePassword(member);
 		
 	}

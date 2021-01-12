@@ -5,46 +5,45 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>Activities check form</title>
-</head>
+<jsp:include page="head.jsp" />
 <body>
-	<h1>Activities check form</h1>
-	<c:choose>
-		<c:when test="${activities.isEmpty()}">
-			<p>Sorry, there's no activities at this moment.</p>
-		</c:when>
-		<c:otherwise>
-			<c:if test="${errorMessage != null }">
-				<p class="error">${errorMessage}</p>
-			</c:if>
-			<form:form method="post" modelAttribute="activitiesCheckFormDTO" action="${context}/activities/check">
-				<table>
-					<tr>
-						<td>Activity:</td>
-						<td>
+	<div id="header">
+		<c:import url="http://daudecinc.tk/menu.html" />
+	</div>
+	<div id="content-wrapper">
+		<div id="content" class="no-news">
+			<h1>Formulari de participació</h1>
+			<p>Pregunta a la persona encarregada de l'activitat el codi per tal de poder-te registrar a la mateixa.</p>
+			<c:choose>
+				<c:when test="${activities.isEmpty()}">
+					<p>Ho sentim, ara mateix no hi ha activitats.</p>
+				</c:when>
+				<c:otherwise>
+					<c:if test="${errorMessage != null }">
+						<p class="error">${errorMessage}</p>
+					</c:if>
+					<form:form method="post" modelAttribute="activitiesCheckFormDTO" action="${context}/activities/check">
+						<p>
+							<span>Activitat: </span>
 							<form:select path="activity" items="${activities}" itemValue="id" itemLabel="title" />
-						</td>
-					</tr>
-					<tr>
-						<td>Activity code:</td>
-						<td>
-							<form:input path="code" />
-							<form:errors path="code" />
-						</td>
-					</tr>
-					<tr>
-						<td colspan="2">
-							<input type="submit" value="I'm here!" />
-						</td>
-					</tr>
-				</table>
-			</form:form>
-		</c:otherwise>
-	</c:choose>
-	<p>
-		<a href="${context}/private/home">&lt; Back to member's home</a>
-	</p>
+							<form:errors path="activity" cssClass="error"/>
+						</p>
+						<p>
+							<span>Codi: </span>
+							<form:input path="code"/>
+							<form:errors path="code" cssClass="error"/>
+						</p>
+						<input type="submit" value="Estic aqui!" class="boton"/>
+					</form:form>
+				</c:otherwise>
+			</c:choose>
+			<p>
+				<a href="${context}/private/home">&lt; Torna a la pàgina principal</a>
+			</p>
+		</div>
+		<div id="tools">
+			<c:import url="http://daudecinc.tk/tools.html" />
+		</div>
+	</div>
 </body>
 </html>

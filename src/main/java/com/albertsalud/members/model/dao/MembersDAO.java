@@ -15,4 +15,6 @@ public interface MembersDAO extends JpaRepository<Member, Long> {
 
 	List<Member> findByActivitiesId(Long activityId);
 
+	Optional<Member> findByIdAndPassword(Long id, String password);
+
 }

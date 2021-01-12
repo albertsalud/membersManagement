@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 public class MembersDataFormDTO {
 	
 	private Long id;
+	private String password;
 	
 	@NotBlank
 	private String name;

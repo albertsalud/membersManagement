@@ -4,42 +4,39 @@
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<link href="http://daudecinc.tk/css/dd5.css" rel="stylesheet" />
-<title>Insert title here</title>
-</head>
+<jsp:include page="head.jsp" />
 <body>
-	<h1>Members password form</h1>
-	<c:if test="${message != null}">
-		<p class="error">${message}</p>
-	</c:if>
-	<form:form method="post" modelAttribute="changeMembersPasswordDTO" action="${context}/private/changePassword">
-		<form:hidden path="id"/>
-		<table>
-			<tr>
-				<td>Password:</td>
-				<td>
-					<form:password path="password"/>
-					<form:errors path="password" cssClass="error" />
-				</td>
-			</tr>
-			<tr>
-				<td>Repeat password:</td>
-				<td>
+	<div id="header">
+		<c:import url="http://daudecinc.tk/menu.html" />
+	</div>
+	<div id="content-wrapper">
+		<div id="content" class="no-news">
+			<h1>La mave paraula de pas</h1>
+			<c:if test="${message != null}">
+				<p class="error">${message}</p>
+			</c:if>
+			<form:form method="post" modelAttribute="changeMembersPasswordDTO" action="${context}/private/changePassword" id="form-changePassword">
+				<form:hidden path="email"/>
+				<form:hidden path="password"/>
+				<p>
+					<span>Paraula de pas*: </span>
+					<form:password path="newPassword"/>
+					<form:errors path="newPassword" cssClass="error" />
+				</p>
+				<p>
+					<span>Repeteix*: </span>
 					<form:password path="repeatPassword"/>
 					<form:errors path="repeatPassword" cssClass="error" />
-				</td>
-			</tr>
-			<tr>
-				<td colspan="2">
-					<input type="submit" value="Save" />
-				</td>
-			</tr>
-		</table>	
-	</form:form>
-	<p>
-		<a href="${context}/private/home">&lt; Back to member's home</a>
-	</p>
+				</p>
+				<input type="submit" value="Desar" class="boton"/>
+			</form:form>
+			<p>
+				<a href="${context}/private/home">&lt; Tornar sense desar</a>
+			</p>
+		</div>
+		<div id="tools">
+			<c:import url="http://daudecinc.tk/tools.html" />
+		</div>
+	</div>
 </body>
 </html>

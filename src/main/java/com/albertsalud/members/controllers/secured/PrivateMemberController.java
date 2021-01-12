@@ -96,8 +96,8 @@ public class PrivateMemberController {
 	
 	@GetMapping("/changePassword")
 	public String changeMemberPassword(Model model, Authentication authentication) {
-		ChangeMemberPasswordDTO dto = new ChangeMemberPasswordDTO();
-		dto.setId(this.getMemberFromSecurityContext(authentication).getId());
+		ChangeMemberPasswordDTO dto = modelMapper.map(this.getMemberFromSecurityContext(authentication), 
+				ChangeMemberPasswordDTO.class);
 		
 		return this.getChangeMemberPasswordForm(model, dto);
 	}

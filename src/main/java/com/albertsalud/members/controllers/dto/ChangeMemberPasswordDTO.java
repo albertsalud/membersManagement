@@ -9,10 +9,14 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ChangeMemberPasswordDTO {
 	
-	protected Long id;
+	@NotBlank
+	private String email;
 	
 	@NotBlank
 	protected String password;
+	
+	@NotBlank
+	protected String newPassword;
 	
 	@NotBlank
 	protected String repeatPassword;

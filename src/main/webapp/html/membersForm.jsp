@@ -20,7 +20,6 @@
 			</c:if>
 			
 			<form:form method="post" modelAttribute="membersFormDTO" action="${context}/save" id="form-contacto">
-				<form:hidden path="id"/>
 				<p>
 					<span>Nom*: </span>
 					<form:input path="name"/>

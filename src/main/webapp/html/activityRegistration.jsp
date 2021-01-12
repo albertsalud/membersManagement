@@ -1,17 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>Activity registration</title>
-</head>
+<jsp:include page="head.jsp" />
 <body>
-	<h1>Congratulations!</h1>
-	<p>You have been registered into ${activity.title}.</p>
-	<p>Your points account has been increased in ${activity.points} points.</p>
-	<p>
-		<a href="${context}/private/home">&lt; Back to member's home</a>
-	</p>
+	<div id="header">
+		<c:import url="http://daudecinc.tk/menu.html" />
+	</div>
+	<div id="content-wrapper">
+		<div id="content" class="no-news">
+			<h1>Enhorabona!</h1>
+			<p>T'has registrat correctament a l'activitat <strong>${activity.title}</strong>.</p>
+			<p>El teu compte de punts a aumentat en <strong>${activity.points}</strong> punts.</p>
+			<p>
+				<a href="${context}/private/home">&lt; Torna a la pàgina principal</a>
+			</p>
+		</div>
+		<div id="tools">
+			<c:import url="http://daudecinc.tk/tools.html" />
+		</div>
+	</div>
 </body>
 </html>
