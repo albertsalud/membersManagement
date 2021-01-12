@@ -31,7 +31,7 @@
 			<input type="submit" value="Accedir" class="boton"/>
 		</form:form>
 		<p>
-			<a href="${context }/new">No member yet? Sign in!</a>
+			<a href="${context }/new">Encara no ets soci? Registra't!</a>
 		</p>
 		</div>
 		<div id="tools">

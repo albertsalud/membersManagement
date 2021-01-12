@@ -10,6 +10,8 @@ public class NotBeforeTodayValidator implements ConstraintValidator<NotBeforeTod
 
 	@Override
 	public boolean isValid(Date value, ConstraintValidatorContext context) {
+		if(value == null) return false;
+		
 		Calendar today = Calendar.getInstance();
 		today.set(Calendar.HOUR_OF_DAY, 0);
 		today.set(Calendar.MINUTE, 0);
