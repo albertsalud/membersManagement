@@ -6,40 +6,47 @@
 <!DOCTYPE html>
 <html>
 <c:set var="context" value="${pageContext.request.contextPath}" scope="application"/>
-<head>
-<meta charset="UTF-8">
-<title>Member login form</title>
-</head>
+<jsp:include page="head.jsp" />
 <body>
-	<h1>Member login form</h1>
-	<c:if test="${param.error != null}">
-		<p class="error">Invalid credentials</p>
-	</c:if>
-	<form:form method="post" modelAttribute="memberLoginFormDTO" action="${context}/login">
-		<table>
-			<tr>
-				<td>E-mail:</td>
-				<td>
-					<form:input path="username"/>
-					<form:errors path="username"/>
-				</td>
-			</tr>
-			<tr>
-				<td>Password:</td>
-				<td>
-					<form:password path="password"/>
-					<form:errors path="password"/>
-				</td>
-			</tr>
-			<tr>
-				<td colspan="2">
-					<input type="submit" value="Log in" />
-				</td>
-			</tr>
-		</table>
-	</form:form>
-	<p>
-		<a href="${context }/new">No member yet? Sign in!</a>
-	</p>
+	<div id="header">
+		<c:import url="http://daudecinc.tk/menu.html" />
+	</div>
+	<div id="content-wrapper">
+		<div id="content" class="no-news">
+		<h1>Member login form</h1>
+		<c:if test="${param.error != null}">
+			<p class="error">Invalid credentials</p>
+		</c:if>
+		<form:form method="post" modelAttribute="memberLoginFormDTO" action="${context}/login">
+			<table>
+				<tr>
+					<td>E-mail:</td>
+					<td>
+						<form:input path="username"/>
+						<form:errors path="username"/>
+					</td>
+				</tr>
+				<tr>
+					<td>Password:</td>
+					<td>
+						<form:password path="password"/>
+						<form:errors path="password"/>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<input type="submit" value="Log in" class="boton"/>
+					</td>
+				</tr>
+			</table>
+		</form:form>
+		<p>
+			<a href="${context }/new">No member yet? Sign in!</a>
+		</p>
+		</div>
+		<div id="tools">
+			<c:import url="http://daudecinc.tk/tools.html" />
+		</div>
+	</div>
 </body>
 </html>
