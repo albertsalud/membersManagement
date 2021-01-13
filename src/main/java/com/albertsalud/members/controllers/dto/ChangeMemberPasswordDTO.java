@@ -1,5 +1,6 @@
 package com.albertsalud.members.controllers.dto;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
 import lombok.Data;
@@ -9,16 +10,17 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ChangeMemberPasswordDTO {
 	
+	@Email
 	@NotBlank
 	private String email;
 	
 	@NotBlank
-	protected String password;
+	private String password;
 	
 	@NotBlank
-	protected String newPassword;
+	private String newPassword;
 	
 	@NotBlank
-	protected String repeatPassword;
+	private String repeatPassword;
 
 }

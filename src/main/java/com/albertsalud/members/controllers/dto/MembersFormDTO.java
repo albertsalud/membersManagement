@@ -4,13 +4,11 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-@EqualsAndHashCode(callSuper = false)
-public class MembersFormDTO extends ChangeMemberPasswordDTO {
+public class MembersFormDTO{
 	
 	@NotBlank
 	private String name;
@@ -18,10 +16,16 @@ public class MembersFormDTO extends ChangeMemberPasswordDTO {
 	@NotBlank
 	private String surname;
 	
+	private String phone;
+	
 	@Email
 	@NotBlank
 	private String email;
 	
-	private String phone;
+	@NotBlank
+	private String password;
+	
+	@NotBlank
+	private String repeatPassword;
 	
 }
