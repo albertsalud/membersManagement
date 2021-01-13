@@ -23,7 +23,7 @@
 					<form:input path="email"/>
 					<form:errors path="email" cssClass="error" />
 				</p>
-				<input type="submit" value="Desar" class="boton"/>
+				<input type="submit" value="Recuperar la paraula de pas" class="boton"/>
 			</form:form>
 		</div>
 		<div id="tools">
