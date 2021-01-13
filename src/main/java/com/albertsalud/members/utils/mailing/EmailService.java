@@ -26,9 +26,7 @@ public class EmailService {
 		
 		MimeMessageHelper helper = new MimeMessageHelper(message, false);
 		helper.setFrom("daudecinc@gmail.com");
-		//helper.setTo(member.getEmail());
-		
-		helper.setTo("albertsalud@gmail.com");	// TODO for test purpose
+		helper.setTo(member.getEmail());
 		
 		emailSender.send(message);
 	}
