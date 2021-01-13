@@ -23,6 +23,7 @@ import com.albertsalud.members.model.entities.Member;
 import com.albertsalud.members.model.services.result.MemberServicesResultBean;
 import com.albertsalud.members.security.AdminPrincipal;
 import com.albertsalud.members.security.MemberPrincipal;
+import com.albertsalud.members.utils.mailing.EmailService;
 
 @Service
 public class MemberServices implements UserDetailsService {
@@ -33,16 +34,22 @@ public class MemberServices implements UserDetailsService {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	
+	@Autowired
+	private EmailService emailService;
+	
 	public MemberServicesResultBean registryMember(Member memberToRegistry) {
 		managePassword(memberToRegistry);
-		return saveMember(memberToRegistry);
+		
+		MemberServicesResultBean result = saveMember(memberToRegistry);
+		if(result.isOk()) emailService.sendActivationMessage(result.getMember());
+		
+		return result;
 	}
 	
 	private MemberServicesResultBean saveMember(Member memberToSave) {
 		MemberServicesResultBean result = new MemberServicesResultBean();
 		try {
-			result.setMember(memberToSave);
-			membersDao.save(memberToSave);
+			result.setMember(membersDao.save(memberToSave));
 			
 		} catch (Exception e) {
 			result.setError(e.getMessage());
@@ -59,7 +66,7 @@ public class MemberServices implements UserDetailsService {
 	
 
 	public Member findByEmailAndPassword(String email, String password) {
-		return membersDao.findByEmailAndPassword(email, passwordEncoder.encode(password)).orElse(null);
+		return membersDao.findByEmailAndPassword(email, password).orElse(null);
 	}
 
 	public MemberServicesResultBean addActivity(Member member, Activity activity) {
@@ -86,8 +93,9 @@ public class MemberServices implements UserDetailsService {
 
 	private Member generateAdminMember() {
 		Member fakeMember = new Member();
+		fakeMember.setId(-1l);
 		fakeMember.setName("Dau de cinc");
-		fakeMember.setEmail("daudecinc");
+		fakeMember.setEmail("daudecinc@gmail.com");
 		fakeMember.setPassword(passwordEncoder.encode("jocsdetaula"));
 
 		return fakeMember;

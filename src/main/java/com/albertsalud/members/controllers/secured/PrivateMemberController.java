@@ -103,7 +103,7 @@ public class PrivateMemberController {
 	}
 	
 	private String getChangeMemberPasswordForm(Model model, ChangeMemberPasswordDTO dto) {
-		model.addAttribute("changeMembersPasswordDTO", dto);
+		model.addAttribute("changeMemberPasswordDTO", dto);
 		return "membersPasswordForm";
 	}
 	

@@ -5,6 +5,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE html>
 <html>
+<c:set var="context" value="${pageContext.request.contextPath}" scope="application"/>
 <jsp:include page="head.jsp" />
 <body>
 	<div id="header">
@@ -12,7 +13,8 @@
 	</div>
 	<div id="content-wrapper">
 		<div id="content" class="no-news">
-			<h1>La meva paraula de pas</h1>
+			<h1>Restabliment de la paraula de pas</h1>
+			
 			<c:if test="${message != null}">
 				<p class="error">${message}</p>
 			</c:if>
@@ -26,7 +28,7 @@
 				</c:forEach>
 			</spring:hasBindErrors>
 			
-			<form:form method="post" modelAttribute="changeMemberPasswordDTO" action="${context}/private/changePassword" id="form-changePassword">
+			<form:form method="post" modelAttribute="changeMemberPasswordDTO" action="${context}/changePassword" id="form-changePassword">
 				<form:hidden path="email"/>
 				<form:hidden path="password"/>
 				<p>
@@ -41,9 +43,6 @@
 				</p>
 				<input type="submit" value="Desar" class="boton"/>
 			</form:form>
-			<p>
-				<a href="${context}/private/home">&lt; Tornar sense desar</a>
-			</p>
 		</div>
 		<div id="tools">
 			<c:import url="http://daudecinc.tk/tools.html" />

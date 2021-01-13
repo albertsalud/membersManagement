@@ -28,6 +28,9 @@
 				<form:password path="password"/>
 				<form:errors path="password" cssClass="error" />
 			</p>
+			<p>
+				No recordes la teva paraula de pas? Fes click <a href="${context }/recovery">aquí</a>
+			</p>
 			<input type="submit" value="Accedir" class="boton"/>
 		</form:form>
 		<p>
