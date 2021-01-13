@@ -63,11 +63,13 @@ public class MemberController {
 		Member memberToSave = modelMapper.map(dto, Member.class);
 		
 		MemberServicesResultBean result = memberServices.registryMember(memberToSave);
-		
-		if(result.isOk()) {
+		EmailServiceResultBean emailResult = null;
+		if(result.isOk() &&
+				(emailResult = emailService.sendActivationMessage(result.getMember())).isOk()) {
 			return "memberRegistration";
+
 		} else {
-			model.addAttribute("message", result.getError());
+			model.addAttribute("message", result.isOk() ? emailResult.getError() : result.getError());
 			return this.goToMembersForm(model, dto);
 			
 		}
@@ -160,5 +162,23 @@ public class MemberController {
 			
 		}
 		
+	}
+	
+	@GetMapping("/activeUser")
+	public String activeUser(Model model,
+			@RequestParam(name="p", required = true) String password,
+			@RequestParam(name="e", required = true) String email) {
+		Member member = memberServices.findByEmailAndPassword(email, password);
+		if(member == null) {
+			return "redirect:/error";
+		}
+		
+		MemberServicesResultBean serviceResult =  memberServices.activeUser(member);
+		if(!serviceResult.isOk()) {
+			model.addAttribute("message", "No s'ha pogut activar l'usuari: " + serviceResult.getError());
+			return goToLoginForm(model);
+		}
+		
+		return "userActivation";
 	}
 }

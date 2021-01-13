@@ -3,6 +3,7 @@
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
+<c:set var="context" value="${pageContext.request.contextPath}" scope="application"/>
 <jsp:include page="head.jsp" />
 <body>
 	<div id="header">
@@ -11,10 +12,10 @@
 	<div id="content-wrapper">
 		<div id="content" class="no-news">
 			<h1>Enhorabona!</h1>
-			<p>T'has registrat correctament a l'activitat <strong>${activity.title}</strong>.</p>
-			<p>El teu compte de punts a aumentat en <strong>${activity.points}</strong> punts.</p>
+			<p>Has activat correctament el teu usuari.</p>
+			<p>Ja pots accedir a la teva àrea privada.</p>
 			<p>
-				<a href="${context}/private/home">&lt; Torna a la pàgina principal</a>
+				<a href="${context}/private">&gt; Accedir</a>
 			</p>
 		</div>
 		<div id="tools">

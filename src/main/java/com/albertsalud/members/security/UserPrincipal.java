@@ -48,7 +48,7 @@ public abstract class UserPrincipal implements UserDetails {
 
 	@Override
 	public boolean isEnabled() {
-		return true;
+		return member.isActive();
 	}
 	
 	@Override

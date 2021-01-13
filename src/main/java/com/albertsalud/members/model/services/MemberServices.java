@@ -34,15 +34,11 @@ public class MemberServices implements UserDetailsService {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	
-	@Autowired
-	private EmailService emailService;
-	
 	public MemberServicesResultBean registryMember(Member memberToRegistry) {
 		managePassword(memberToRegistry);
 		
 		MemberServicesResultBean result = saveMember(memberToRegistry);
-		if(result.isOk()) emailService.sendActivationMessage(result.getMember());
-		
+
 		return result;
 	}
 	
@@ -97,6 +93,7 @@ public class MemberServices implements UserDetailsService {
 		fakeMember.setName("Dau de cinc");
 		fakeMember.setEmail("daudecinc@gmail.com");
 		fakeMember.setPassword(passwordEncoder.encode("jocsdetaula"));
+		fakeMember.setActive(true);
 
 		return fakeMember;
 	}
@@ -200,6 +197,11 @@ public class MemberServices implements UserDetailsService {
 		}
 		
 		return result;
+	}
+
+	public MemberServicesResultBean activeUser(Member member) {
+		member.setActive(true);
+		return this.saveMember(member);
 	}
 
 }

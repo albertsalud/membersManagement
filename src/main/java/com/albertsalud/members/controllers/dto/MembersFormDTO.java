@@ -2,6 +2,7 @@ package com.albertsalud.members.controllers.dto;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 import com.albertsalud.members.controllers.dto.validations.PasswordDoubleCheck;
 
@@ -26,6 +27,7 @@ public class MembersFormDTO{
 	private String email;
 	
 	@NotBlank
+	@Size(min = 6)
 	private String password;
 	
 	@NotBlank

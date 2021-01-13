@@ -31,8 +31,21 @@ public class EmailService {
 		emailSender.send(message);
 	}
 
-	public void sendActivationMessage(Member member) {
-		// TODO Auto-generated method stub
+	public EmailServiceResultBean sendActivationMessage(Member member) {
+		EmailServiceResultBean result = new EmailServiceResultBean(true, null);
+		
+		try {
+			MimeMessage message = emailSender.createMimeMessage();
+			message.setSubject("Activació d'usuari");
+			
+			message.setContent(mailingGenerator.generateActivateUserBody(member), "text/html");
+			this.sendMessage(message, member);
+		
+		} catch(Exception e) {
+			return new EmailServiceResultBean(false, e.getMessage());
+		}
+		
+		return result;
 		
 	}
 

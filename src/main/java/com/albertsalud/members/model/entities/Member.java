@@ -36,6 +36,8 @@ public class Member {
 	private String phone;
 	private String password;
 	
+	private boolean active;
+	
 	@ManyToMany(fetch = FetchType.EAGER)
 	private List<Activity> activities;
 
