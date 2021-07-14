@@ -23,7 +23,6 @@ import com.albertsalud.members.model.entities.Member;
 import com.albertsalud.members.model.services.result.MemberServicesResultBean;
 import com.albertsalud.members.security.AdminPrincipal;
 import com.albertsalud.members.security.MemberPrincipal;
-import com.albertsalud.members.utils.mailing.EmailService;
 
 @Service
 public class MemberServices implements UserDetailsService {

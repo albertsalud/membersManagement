@@ -11,8 +11,6 @@ import org.springframework.stereotype.Component;
 import com.albertsalud.members.model.entities.Member;
 import com.albertsalud.members.model.services.result.ResultBean;
 
-import lombok.Data;
-
 @Component
 public class EmailService {
 
@@ -67,7 +65,6 @@ public class EmailService {
 		
 	}
 	
-	@Data
 	public class EmailServiceResultBean extends ResultBean{
 		
 		private EmailServiceResultBean(boolean ok, String message) {
