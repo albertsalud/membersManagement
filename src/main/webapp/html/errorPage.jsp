@@ -6,7 +6,7 @@
 <jsp:include page="head.jsp" />
 <body>
 	<div id="header">
-		<c:import url="http://daudecinc.tk/menu.html" />
+		<c:import url="${applicationScope.webURL}/menu.html" />
 	</div>
 	<div id="content-wrapper">
 		<div id="content" class="no-news">
@@ -17,7 +17,7 @@
 			</c:if>
 		</div>
 		<div id="tools">
-			<c:import url="http://daudecinc.tk/tools.html" />
+			<c:import url="${applicationScope.webURL}/tools.html" />
 		</div>
 	</div>
 </body>
