@@ -55,7 +55,6 @@
 							<c:if test="${currentActivity.startDate.before(now) && currentActivity.endDate.after(now)}">
 								<a href="${context}/activities/check">&gt; Participar</a>
 							</c:if>
-							 - ${now}
 						</td>
 					</tr>
 				</c:forEach>
