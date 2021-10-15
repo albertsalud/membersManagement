@@ -22,6 +22,7 @@
 				<table id="data-table" cellspacing="0" cellpadding="5">
 					<tr>
 						<th>Title</th>
+						<th>Location</th>
 						<th>Activity date</th>
 						<th>Points</th>
 						<th>Code</th>
@@ -30,6 +31,7 @@
 					<c:forEach items="${activities}" var="currentActivity">
 						<tr>
 							<td>${currentActivity.title}</td>
+							<td>${currentActivity.location}</td>
 							<td>
 								<fmt:formatDate value="${currentActivity.startDate}" pattern="dd/MM/yyyy HH:mm"/>
 								

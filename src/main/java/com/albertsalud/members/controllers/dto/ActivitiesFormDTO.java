@@ -26,6 +26,9 @@ public class ActivitiesFormDTO {
 	@NotBlank
 	private String title;
 	
+	@NotBlank
+	private String location;
+	
 	@NotNull
 	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
 	@NotBeforeToday

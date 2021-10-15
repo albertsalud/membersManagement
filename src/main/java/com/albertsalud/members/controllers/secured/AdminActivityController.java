@@ -112,7 +112,7 @@ public class AdminActivityController {
 		activity.setPoints(dto.getPoints());
 		activity.setStartDate(dto.getStartDate());
 		activity.setTitle(dto.getTitle());
-		
+		activity.setLocation(dto.getLocation());
 		return activity;
 		
 	}
