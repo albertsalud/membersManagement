@@ -176,7 +176,13 @@ public class MemberServices implements UserDetailsService {
 	}
 
 	public List<Member> findAllActive() {
-		return membersDao.findAll();
+		return membersDao.findAll()
+				.stream()
+				.filter(m -> m.isActive())
+				.sorted((m1, m2) -> 
+						m1.getFullName().compareTo(m2.getFullName())
+						)
+				.collect(Collectors.toList());
 	}
 
 	public Member findById(Long memberId) {

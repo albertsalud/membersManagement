@@ -25,6 +25,9 @@ public class Activity {
 	@Column(nullable = false)
 	private String title;
 	
+	@Column(nullable = false)
+	private String location;
+	
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date startDate;
 	

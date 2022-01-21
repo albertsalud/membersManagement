@@ -41,6 +41,7 @@
 				<tr>
 					<th>Data</th>
 					<th>Activitat</th>
+					<th>Ubicació</th>
 					<th>Punts</th>
 					<th>&nbsp;</th>
 				</tr>
@@ -48,6 +49,7 @@
 					<tr>
 						<td><fmt:formatDate value="${currentActivity.startDate}" pattern="dd/MM/yyyy HH:mm"/></td>
 						<td>${currentActivity.title}</td>
+						<td>${currentActivity.location}</td>
 						<td>${currentActivity.points}</td>
 						<td>
 							<c:if test="${currentActivity.startDate.before(now) && currentActivity.endDate.after(now)}">

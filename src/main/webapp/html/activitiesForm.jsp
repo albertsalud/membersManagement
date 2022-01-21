@@ -32,6 +32,11 @@
 					<form:errors path="title" cssClass="error"/>
 				</p>
 				<p>
+					<span>Location:</span>
+					<form:input path="location"/>
+					<form:errors path="location" cssClass="error"/>
+				</p>
+				<p>
 					<span>Start date:</span>
 					<form:input path="startDate" onchange="fillEndDate()"/>
 					<form:errors path="startDate" cssClass="error"/>
