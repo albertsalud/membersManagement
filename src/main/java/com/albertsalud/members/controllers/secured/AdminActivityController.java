@@ -1,6 +1,5 @@
 package com.albertsalud.members.controllers.secured;
 
-import java.util.Calendar;
 import java.util.Date;
 
 import javax.validation.Valid;
