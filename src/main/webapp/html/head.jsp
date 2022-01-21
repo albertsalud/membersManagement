@@ -20,11 +20,13 @@
 	    jQuery(function($) {
 	        $("#startDate").datetimepicker({
 	        	dateFormat: 'dd/mm/yy',
-	        	timeFormat:'HH:mm'
+	        	timeFormat:'HH:mm',
+	        	firstDay: 1
 	        });
 	        $("#endDate").datetimepicker({
 	        	dateFormat: 'dd/mm/yy',
-	        	timeFormat:'HH:mm'
+	        	timeFormat:'HH:mm',
+	        	firstDay: 1
 	        });
 	    });
 	    

@@ -209,4 +209,21 @@ public class MemberServices implements UserDetailsService {
 		return this.saveMember(member);
 	}
 
+	public List<Activity> getActivitiesByMember(Member member, Integer year) {
+		Member databaseMember = membersDao.findActivitiesByMember(member);
+		if(databaseMember.getActivities() == null || databaseMember.getActivities().isEmpty()) return null;
+		
+		int myYear = manageYear(year);
+		return databaseMember.getActivities().stream()
+				.filter(a -> {
+					Calendar activityDate = Calendar.getInstance();
+				
+					activityDate.setTime(a.getStartDate());
+					
+					return activityDate.get(Calendar.YEAR) == myYear;
+					})
+				.sorted(Comparator.comparing(Activity::getStartDate))
+				.collect(Collectors.toList());
+	}
+
 }
