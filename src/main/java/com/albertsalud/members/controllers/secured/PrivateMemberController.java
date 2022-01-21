@@ -42,7 +42,7 @@ public class PrivateMemberController {
 	@GetMapping("/home")
 	public String goToMembersHome(Model model, Authentication authentication) {
 		Member member = this.getMemberFromSecurityContext(authentication);
-		member.setActivities(memberServices.getActivitiesByYear(member, Calendar.getInstance().get(Calendar.YEAR)));
+		member.setActivities(memberServices.getActivitiesByMember(member, Calendar.getInstance().get(Calendar.YEAR)));
 		model.addAttribute("member", member);
 		model.addAttribute("activities", activityServices.findNextActivities());
 		model.addAttribute("now", new Date());
@@ -138,7 +138,7 @@ public class PrivateMemberController {
 			Authentication authentication) {
 		model.addAttribute("now", new Date());
 		model.addAttribute("activities", 
-				memberServices.getActivitiesByYear(
+				memberServices.getActivitiesByMember(
 						this.getMemberFromSecurityContext(authentication), year));
 		return "membersParticipation";
 	}
