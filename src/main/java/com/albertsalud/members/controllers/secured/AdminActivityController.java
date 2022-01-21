@@ -1,5 +1,8 @@
 package com.albertsalud.members.controllers.secured;
 
+import java.util.Calendar;
+import java.util.Date;
+
 import javax.validation.Valid;
 
 import org.modelmapper.ModelMapper;
@@ -12,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.albertsalud.members.controllers.dto.ActivitiesFormDTO;
 import com.albertsalud.members.controllers.dto.ParticipationFormDTO;
@@ -64,7 +68,7 @@ public class AdminActivityController {
 			model.addAttribute("errorMessage", e.getMessage());
 			
 		}
-		return this.getActivities(model);
+		return this.getActivities(model, null);
 		
 	}
 	
@@ -82,12 +86,16 @@ public class AdminActivityController {
 			model.addAttribute("errorMessage", e.getMessage());
 		}
 		
-		return this.getActivities(model);
+		return this.getActivities(model, null);
 	}
 
 	@GetMapping(value = {"", "/"})
-	public String getActivities(Model model) {
-		model.addAttribute("activities", activityServices.findAll());
+	public String getActivities(Model model,
+			@RequestParam(name = "year", required = false) Integer year
+			) {
+		
+		model.addAttribute("activities", activityServices.findAllByYear(year));
+		model.addAttribute("now", new Date());
 		return "activitiesList";
 	}
 
@@ -184,4 +192,5 @@ public class AdminActivityController {
 		}
 		return "redirect:/admin/activities/" + activityId + "/members";
 	}
+	
 }

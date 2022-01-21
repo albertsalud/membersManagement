@@ -15,6 +15,16 @@
 			<c:if test="${message != null}">
 				<p class="error">${message}</p>
 			</c:if>
+			<fmt:formatDate var="year" value="${now}" pattern="yyyy" />
+			<form action="${context}/admin/activities" method="get" name="changeYear">
+				<p>
+					Year:
+					<select name="year" onchange="document.forms.changeYear.submit();">
+						<option value="${year}">${year}</option>
+						<option ${param.year == year-1 ? 'selected' : ''} value="${year-1}">${year-1}</option>
+					</select>
+				</p>
+			</form>
 			<p>
 				<a href="${context}/admin/activities/new">&gt; Add a new activity</a>
 			</p>
