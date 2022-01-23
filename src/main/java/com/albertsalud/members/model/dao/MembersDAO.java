@@ -18,7 +18,7 @@ public interface MembersDAO extends JpaRepository<Member, Long> {
 
 	Optional<Member> findByIdAndPassword(Long id, String password);
 
-	@Query("FROM Member m JOIN FETCH m.activities WHERE m = :member")
+	@Query("FROM Member m LEFT JOIN FETCH m.activities WHERE m = :member")
 	Member findActivitiesByMember(Member member);
 
 }

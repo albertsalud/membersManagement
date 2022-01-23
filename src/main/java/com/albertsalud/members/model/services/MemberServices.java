@@ -65,7 +65,8 @@ public class MemberServices implements UserDetailsService {
 	}
 
 	public MemberServicesResultBean addActivity(Member member, Activity activity) {
-		if(member.getActivities().contains(activity)) {
+		member = membersDao.findActivitiesByMember(member);
+		if(member.getActivities() != null && member.getActivities().contains(activity)) {
 			MemberServicesResultBean result = new MemberServicesResultBean();
 			result.setError("Activity registered");
 			result.setOk(false);
